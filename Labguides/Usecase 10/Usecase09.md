@@ -1,4 +1,4 @@
-# Task 10: Deploying and Evaluating Fine-Tuned GPT Models in Azure AI Projects
+# Usecase 10: Deploying and Evaluating Fine-Tuned GPT Models in Azure AI Projects
 
 **Scenario**
 
@@ -538,4 +538,5 @@ By completing this exercise, you gained practical experience in
 fine-tuning LLMs, deploying them in Azure AI projects, and validating
 their behavior—an essential skill for building tailored,
 production-ready conversational applications
+
 
