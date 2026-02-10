@@ -84,7 +84,7 @@ will be using throughout the lab.
 	incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image8.png)
 
 5.  Click on **Resource providers**,
-    enter +++Microsoft.DBforPostgreSQL+++ and select i,t, and then
+    enter +++Microsoft.DBforPostgreSQL+++ and select the resource and then
     click **Register**.
 
 	![A screenshot of a computer AI-generated content may be
@@ -262,14 +262,15 @@ will be using throughout the lab.
 
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image40.png)
 
-9.  If prompted to select the path, then select the **Python version
-    3.11.5** path as shown in the image.
+9.  If prompted to select the path, then select the **Python** version that shows as the **Global env** path as shown in the image.
 
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image41.png)
 
 10. If you see an windows security alert dialog box - then click on
     **Allow access**. Run the following code blocks.
 
+	>[!Alert] If prompted to Install a required package, please select **Install**.
+	
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image42.png)
 
 	![A screenshot of a computer AI-generated content may be
@@ -299,7 +300,7 @@ will be using throughout the lab.
 
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image50.png)
 
-14. To check the OpenAI, system versions, select **5th**,6th and
+14. To check the OpenAI, system versions, select 5th, 6th and
     7th cells. Then, execute the cell by clicking on the **start
     icon**.
 
@@ -308,7 +309,7 @@ will be using throughout the lab.
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image52.png)
 
 15. Define a helper function to create embeddings, select and execute
-    the 8th ,9th , 10th and 11th cells by clicking on the
+    the 8th, 9th, 10th and 11th cells by clicking on the
     **Play** button.
 
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image53.png)
@@ -319,8 +320,7 @@ will be using throughout the lab.
 
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image56.png)
 
-16. To Image classification, select and execute the 12th , 13th
-    ,14th and 15th cells by clicking on the **Play** button.
+16. To Image classification, select and execute the 12th, 13th, 14th and 15th cells by clicking on the **Play** button.
 
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image57.png)
 
@@ -328,7 +328,7 @@ will be using throughout the lab.
 
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image59.png)
 
-17. To test, select and execute the **16th ,17th** ,**18th**
+17. To test, select and execute the **16th, 17th**, **18th**
     and **19th** cells by clicking on the **Play** button.
 
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image60.png)
@@ -348,7 +348,7 @@ will be using throughout the lab.
 	![A close up of a flower AI-generated content may be
 	incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image67.png)
 
-18. Select and execute the **20th ,21st) 22nd) ,23rd) ,24th
+18. Select and execute the **20th, 21st, 22nd, 23rd, 24th
     and 25th** cells by clicking on the **Play** button.
 
 	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2001/media/image68.png)
@@ -415,6 +415,7 @@ by Azure OpenAI's GPT-4o model. It highlights the model’s ability to
 interpret visual content and generate natural language responses.
 
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
