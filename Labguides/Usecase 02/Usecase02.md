@@ -1,3 +1,4 @@
+
 # Usecase 02 - Modernize your code with agents with Microsoft Foundry 
 
 **Scenario: Modernizing Large Data Estates for Contoso**
@@ -91,7 +92,7 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdep
   If you do not have an account, please create one by visiting:  
   https://github.com/signup
 
-## Task 1: Register Service provider
+## Task 1: Retrieve resource group name and location
 
 1.  Open a browser go to +++https://portal.azure.com+++ and sign in with
     your cloud slice account below.
@@ -99,38 +100,7 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdep
 	Username: +++@lab.CloudPortalCredential(User1).Username+++
 
 	Temporary Access Token (TAP): +++@lab.CloudPortalCredential(User1).AccessToken+++
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image2.png)
-
-    ![A login box with a red box and blue box with text AI-generated content
-may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image3.png)
-
-2.  Click on **Subscriptions** tile.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image4.png)
-
-3.  Click on the subscription name.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image5.png)
-
-4.  Expand Settings from the left navigation menu. Click on **Resource
-    providers**, enter +++Microsoft.CognitiveServices+++ and
-    select it, and then click **Register**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image6.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image7.png)
-
-	![A screenshot of a computer AI-generated content may be
-incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image8.png)
-
-## Task 2: Retrieve resource group name and location
-
+	
 1.  Type in +++Resource group+++ in the search bar and
     select **Resource groups**.
 
@@ -171,7 +141,10 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdep
 incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image15.png)
 
 4.  Wait for the Codespaces environment to setup .It takes few minutes
-    to setup completely
+    to setup completely.
+	
+	>[!Alert] If the codespace fails to load, at the bottom of the Github repo page, select to deploy through **Visual Studio Code (web)**.
+	>Enter environment name: +++cmsapp@lab.LabInstance.Id+++ and **skip** to **Task 3, Step 5**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image16.png)
@@ -212,12 +185,12 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdep
 7.  To create an environment for Azure resources, run the following
     Azure Developer CLI command. 
 
-	**Note:** When creating an environment, ensure that the name consists of
+	>[!Note] When creating an environment, ensure that the name consists of
 	lowercase letters.
 
 	+++azd env new+++
 	
-	>[!Alert] **Enter environment name: +++cmsapp@lab.LabInstance.Id+++.
+	>[!Alert] Enter environment name: +++cmsapp@lab.LabInstance.Id+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image24.png)
@@ -240,11 +213,8 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdep
     ![A screenshot of a computer code AI-generated content may be
 incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image27.png)
 
-10. Select below values.
-
-	- **Azure Subscription** : **@lab.CloudSubscription.Id**
-
-	- **azureAiServiceLocation**: Select one of the 3 locations: **Eastus2**
+10. When prompted, select your **subscription - @lab.CloudSubscription.Name** to create the resources and
+    select the region **@lab.CloudResourceGroup(ResourceGroup1).Location**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image28.png)
@@ -353,20 +323,20 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdep
     ![A screenshot of a computer AI-generated content may be
 incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image47.png)
 
-**Review**
+	**Review**
 
-- The batch Processing page will open and the translation process will
-  be visible. One file at a time will be processed and others will be in
-  queued state.
+	- The batch Processing page will open and the translation process will
+	  be visible. One file at a time will be processed and others will be in
+	  queued state.
 
-- Once the batch processing is done for any file, the file is available
-  to review.
+	- Once the batch processing is done for any file, the file is available
+	  to review.
 
-- Once the translation process is complete for a batch, it becomes
-  available for review in the History panel (located at the top right).
+	- Once the translation process is complete for a batch, it becomes
+	  available for review in the History panel (located at the top right).
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image48.png)
+	![A screenshot of a computer AI-generated content may be
+	incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2002/media/image48.png)
 
 4.  Once the files are translated, the **Download all as .zip** button
     at the bottom left will be enabled to download the translated files.
