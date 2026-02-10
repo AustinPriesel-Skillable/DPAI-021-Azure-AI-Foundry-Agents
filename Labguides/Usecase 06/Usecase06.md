@@ -1,579 +1,668 @@
-# Usecase 06- Develop an AI-Powered Copilot for Financial Advisors with Microsoft Foundry
-
-#### **Overview**
-
-A custom copilot powered by Azure OpenAI and Foundry Tools that
-streamlines daily tasks and customer meeting preparation for
-customer-facing roles. As a result, this helps to improve client
-retention and customer satisfaction. By increasing employee productivity
-and improving customer conversations, our solution enables organizations
-to serve more customers and drive increased revenue for the entire
-company.
-
-#### **Scenario**
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image1.png)
-
-A Woodgrove Bank Client Advisor is preparing for upcoming client
-meetings. He wants insight into his scheduled client meetings, access to
-portfolio information, a comprehensive understanding of previous
-meetings, and the ability to ask questions about client’s financial
-details and interests.
-
-This solution has an integrated copilot that helps Client Advisors to
-save time and prepare relevant discussion topics for scheduled meetings.
-It provides an overview of daily client meetings with seamless
-navigation between viewing client profiles and chatting with data.
-Altogether, these features streamline meeting preparation for client
-advisors and result in more productive conversations with clients.
-
-![A diagram of a company AI-generated content may be
-incorrect.](./media/image2.png)
-
-**Solution overview**
-
-Leverages Azure OpenAI Service and Azure AI Search, this solution
-streamlines daily tasks and customer meeting preparation for
-customer-facing roles. As a result, this helps to improve client
-retention and customer satisfaction. By increasing employee productivity
-and improving customer conversations, our solution enables organizations
-to serve more customers and drive increased revenue for the entire
-company.
-
-**Business value**
-
-- **Reduce expenses, increase revenue**  
-  Copilots can reduce operational costs, enhance revenue, and maintain
-  competitiveness.
-
-- **Enhance productivity**  
-  Copilots save professionals time in the meeting preparation process
-  which enables them to handle more tasks and increase customer
-  satisfaction.
-
-- **Talent retention**  
-  Organizations can empower employees to deliver the best customer
-  experiences with a focus on relationships, resulting in higher morale
-  and the retention of top talent.
-
-- **Enhance customer engagement**  
-  Copilots can support improved customer interactions for enhanced
-  satisfaction, and enabling professionals to serve a greater number of
-  customers.
-
-- **Optimize daily tasks**  
-  Copilots can streamline workflows by providing intelligent summaries,
-  recommended action items, integrated client views, and immediate
-  support through conversational interfaces.
+# **Usecase 06 - Autonomous Multi-Agent Employee Onboarding Orchestration**
 
 **Introduction**
 
-This use case guides you through building an AI-powered copilot for
-financial advisors using Microsoft Foundry, Azure OpenAI, and Azure AI
-Search. The solution is designed to enhance the daily workflow of
-customer-facing roles by providing instant access to client meeting
-summaries, portfolio insights, and conversational financial analysis. By
-automating time-consuming research and preparation tasks, the copilot
-empowers advisors to deliver more informed, personalized, and productive
-client interactions. Throughout this lab, you will provision Azure
-resources, process sample financial data, deploy a working copilot
-application, and explore how AI can significantly improve advisor
-efficiency, customer satisfaction, and overall business impact
+Contoso, a growing global technology company, hires dozens of employees
+every month across multiple regions. Their onboarding process involves
+coordination between HR, IT, Facilities, Security, and Finance. Each
+department uses different systems, and onboarding tasks are often
+managed through email threads, spreadsheets, and manual follow-ups. This
+leads to delays, missed steps, and a poor first-day experience for new
+hires.
 
-**Objectives**
+To modernize this process, Contoso adopts a **Multi-Agent AI Automation
+framework** where specialized AI agents collaborate to orchestrate
+onboarding tasks end-to-end.
 
-- Understand how an AI copilot improves productivity and client
-  engagement for financial advisors.
+**Solution architecture**
 
-- Deploy Azure resources required for the copilot solution using Azure
-  Developer CLI.
+![image](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image1.png)
 
-- Set up and configure GitHub Codespaces for cloud-based development.
+**Agentic architecture**
 
-- Upload and process sample financial datasets for use in the
-  application.
+![image](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image2.png)
 
-- Explore the deployed copilot’s capabilities for meeting summaries,
-  client insights, and portfolio analysis.
+**Objective**
 
-- Integrate authentication within Azure App Service for secure access to
-  the copilot application.
+The objective of this use case is to demonstrate how a **multi-agent AI
+system** can:
 
-- Validate data retrieval and conversational capabilities using sample
-  queries.
+- Automate cross-department onboarding workflows
 
-- Learn how Azure OpenAI and Azure AI Search power real-time insight
-  generation in customer-facing scenarios.
+- Coordinate tasks between HR, IT, Facilities, and Finance systems
+
+- Dynamically generate and execute task plans based on new hire details
+
+- Reduce manual effort, delays, and human error
+
+- Provide real-time visibility into onboarding progress
+
+- Ensure a seamless and consistent first-day experience for employees
 
 **Prerequisites**
 
 - **GitHub Account**: You are expected to have your own GitHub login
   credentials.  
   If you do not have an account, please create one by visiting:  
-  +++<https://github.com/signup?user_email=&source=form-home-signup+++>
+  +++https://github.com/signup?user_email=&source=form-home-signup+++
 
 ## Task 0: Understand the VM and the credentials
 
 In this task, we will identify and understand the credentials that we
 will be using throughout the lab.
 
-1.  **Instructions** tab hold the lab guide with the instructions to be
+1.  **Instructions** tab hold the lab guide with the instructions to be
     followed throughout the lab.
 
-2.  **Resources** tab has got the credentials that will be needed for
+2.  **Resources** tab has got the credentials that will be needed for
     executing the lab.
 
-    - **URL** – URL to the Azure portal
+    - **URL** – +++https://portal.azure.com/+++
 
-    - **Subscription** – This is the ID of the subscription assigned to
-      you
+    - **Subscription** – @lab.CloudSubscription.Name
 
-    - **Username** – The user id with which you need to login to the
-      Azure services.
+    - **Username** – @lab.CloudPortalCredential(User1).Username
 
-    - **Password** – Password to the Azure login. Let us call this
-      Username and password as Azure login credentials. We will use
-      these creds wherever we mention Azure login credentials.
+    - **TAP** – @lab.CloudPortalCredential(User1).AccessToken
 
-    - **Resource Group** – The **Resource group** assigned to you.
+    - **Resource Group** – @lab.CloudResourceGroup(ResourceGroup1).Name
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image3.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image3.png)
 
-3.  **Help** tab holds the Support information. The **ID** value here is
-    the **Lab instance ID** which will be used during the lab execution.
+3.  **Help** tab holds the Support information. The **ID** value here is
+    the **Lab instance ID** which will be used during the lab execution.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image4.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image4.png)
 
-\[!Alert\] **Important:** Make sure you create all your resources under
-this Resource group
+	>[!Alert] Make sure you create all your resources under this Resource group.
 
 ## Task 1: Register Service provider
 
-1.  Open a browser go to +++https://portal.azure.com+++ and sign in with
+1.  Open a browser go to +++https://portal.azure.com+++ and sign in with
     your cloud slice account below.
 
-Username: <+++@lab.CloudPortalCredential>(User1).Username+++
+	**Username:** +++@lab.CloudPortalCredential(User1).Username+++
 
-Password: <+++@lab.CloudPortalCredential>(User1). *TAP*+++
+	**TAP:** +++@lab.CloudPortalCredential(User1).AccessToken+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image5.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image5.png)
 
-![A login box with a red box and blue box with text AI-generated content
-may be incorrect.](./media/image6.png)
+    ![A login box with a red box and blue box with text AI-generated content
+may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image6.png)
 
-2.  Click on **Subscriptions** tile.
+2.  Click on **Subscriptions** tile.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image7.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image7.png)
 
 3.  Click on the subscription name.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image8.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image8.png)
 
-4.  Expand Settings from the left navigation menu. Click on **Resource
-    providers**, enter **+++** **Microsoft.CognitiveServices+++** and
-    select i,t, and then click **Register**.
+4.  Expand Settings from the left navigation menu. Click on **Resource
+    providers**, enter +++Microsoft.CognitiveServices+++ and
+    select it, and then click **Register**.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image9.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image9.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image10.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image10.png)
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image11.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image11.png)
 
 ## Task 2: Open Github Codespaces environment
 
 1.  Open your browser, navigate to the address bar, type or paste the
-    following URL: +++https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator+++
+    following URL: +++https://github.com/technofocus-pte/MultiAgentAccelerator/tree/main+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image12.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image12.png)
 
-2.  Click on **fork** to fork the repo. Give unique name to the repo and
-    click on **Create repo** button.
+2.  Click on **fork** to fork the repo. Give unique name to the repo and
+    click on **Create repo** button.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image13.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image13.png)
 
-3.  Click on **Code -\> Codespaces -\> Codespaces+**
+3.  Click on **Code -\> Codespaces -\> Codespaces+**
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image14.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image14.png)
 
 4.  Wait for the Codespaces environment to setup .It takes few minutes
     to setup completely
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image15.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image15.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image16.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image16.png)
 
 ## Task 3: Provision Services and deploy application to Azure
 
 1.  Run the following command on the Terminal. It generates the code to
     copy. Copy the code and press Enter.
 
-+++azd auth login+++
+	+++azd auth login+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image17.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image17.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image18.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image18.png)
 
 2.  Default browser opens to enter the generated code to verify. Enter
-    the code and click **Next**.
+    the code and click **Next**.
 
-![A screenshot of a computer error AI-generated content may be
-incorrect.](./media/image19.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image19.png)
 
 3.  Sign in with your Azure credentials.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image20.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image20.png)
 
-![A screenshot of a computer error AI-generated content may be
-incorrect.](./media/image21.png)
+    ![A screenshot of a computer error AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image21.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image22.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image22.png)
 
-4.  Run azd up - This will provision Azure resources
+4.  Run azd up - This will provision Azure resources
 
-+++azd up+++
+	+++azd up+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image23.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image23.png)
 
-5.  To create an environment for Azure resources, enter any name of your
-    choice and press enter (eg :+++byocaappXXXX+++)
+5.  To create an environment for Azure resources, enter +++macaedev@lab.LabInstance.Id+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image24.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image24.png)
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image25.png)
 
 6.  Select below values.
 
-- **Select an Azure Subscription to use** : Select your subscription
+	- **Select an Azure Subscription to use** : **@lab.CloudSubscription.Name**
 
-- **azureAiServiceLocation**: Sweden Central
+	- **azureAiServiceLocation**: **East US 2**
 
-- **‘location' infrastructure parameter:** Central US
+	- **‘Location' infrastructure parameter:** **@lab.CloudResourceGroup(ResourceGroup1).Location**
 
-- **Pick a resource group to use:** existing resource group
+	- **Resource Group:** **@lab.CloudResourceGroup(ResourceGroup1).Name**
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image25.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image26.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image26.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image27.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image27.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image28.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image28.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image29.png)
 
-7.  This deployment will take *7-10 minutes* to provision the resources
+7.  This deployment will take *7-10 minutes* to provision the resources
     in your account and set up the solution with sample data.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image29.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image30.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image30.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image31.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image31.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image32.png)
 
 8.  Now the deployment is complete
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image32.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image33.png)
 
 9.  After the application has been successfully deployed, you see a URL
-    displayed in the terminal. Copy the **URL**
+    displayed in the terminal. Copy the **Frontend application URL**
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image33.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image34.png)
 
-## Task 4:Import Sample Data
+## Task 4: Post-Deployment Configuration
 
 1.  Run the sample data processing script by executing **bash
-    ./infra/scripts/process_sample_data.sh** from the project root to
-    prepare and upload the required data.
+    infra/scripts/selecting_team_config_and_data.sh** from the project
+    root to prepare and upload the required data.
 
-+++bash ./infra/scripts/process_sample_data.sh+++
+	+++bash infra/scripts/selecting_team_config_and_data.sh+++
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image34.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image35.png)
 
 2.  After running the command **bash
-    ./infra/scripts/process_sample_data.sh**, authenticate in the
-    browser by opening
-    [**https://microsoft.com/devicelogin**](https://microsoft.com/devicelogin)
+    infra/scripts/selecting_team_config_and_data.sh**, authenticate in
+    the browser by opening
+    +++https://microsoft.com/devicelogin+++
     and entering the **displayed code** to continue the script
     execution.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image35.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image36.png)
 
-![A screenshot of a computer error AI-generated content may be
-incorrect.](./media/image36.png)
+    ![A screenshot of a computer error AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image37.png)
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image37.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image38.png)
 
 3.  Select your subscription
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image38.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image39.png)
 
-![A screenshot of a computer program AI-generated content may be
-incorrect.](./media/image39.png)
+4.  After running the script, a list of available use case scenarios
+    will appear for selection. You can choose specific scenarios or
+    deploy all use cases at once. Based on your selection, the required
+    datasets and configuration files for those use case(s) will be
+    uploaded to your Azure environment. For this lab, select
+    **6**    
+	
+	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image40.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image40.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image41.png)
 
-![A screenshot of a computer program AI-generated content may be
-incorrect.](./media/image41.png)
+    ![A screenshot of a computer program AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image42.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image42.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image43.png)
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image44.png)
 
 ## Task 5: Verify deployed resources in the Azure portal
 
-1.  Select **Resource groups**
+1.  Open a browser go to +++https://portal.azure.com+++ and sign in with your cloud slice
+    account below.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image43.png)
+2.  Select **Resource groups**
 
-2.  Click on your assigned **Resource group**.
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image45.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image44.png)
+3.  Click on your assigned **Resource group**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image46.png)
 
 3.  Make sure the below resource got deployed successfully
 
-- Foundry
+	- Foundry
 
-- Foundry project
+	- Foundry project
 
-- App Service
+	- App Service
 
-- Container registry
+	- Container registry
 
-- Azure Cosmos DB account
+	- Azure Cosmos DB account
 
-- SQL server
+	- Container App
 
-- SQL Database
+	- SQL Database
 
-- Search service
+	- Search service
 
-- Azure Storage account
+	- Azure Storage account
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image45.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image47.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image46.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image48.png)
 
-4.  On the resource group and click on **Azure Storage account.**
+4.  On the resource group and click on **Azure Storage account.**
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image47.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image49.png)
 
-5.  From the left navigation menu, click on **Containers** , Make sure
+5.  From the left navigation menu, click on **Containers** , Make sure
     data should be deployed successfully
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image48.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image50.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image49.png)
+6.  Go back to resorcegroup and click on **Foundry Project.**
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image50.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image51.png)
 
-6.  Go back to resorcegroup and click on **Foundry Project.**
+4.  Click **Go to Foundry portal** to verify that the model has been
+    successfully deployed.     ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image52.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image51.png)
-
-3.  Click **Go to Foundry portal** to verify that the model has been
-    successfully deployed.![A screenshot of a computer AI-generated
-    content may be incorrect.](./media/image52.png)
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image53.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image53.png)
 
 ## Task 6: Add Authentication in Azure App Service configuration
 
-1.  Go back to resorcegroup and click on **App
-    Service(app-byocaappXXX).**
+1.  Go back to resourcegroup and click on **App
+    Service(app-macaedevXXX).**
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image54.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image54.png)
 
 2.  On the web app home page, go to **Settings** and click
-    **Authentication** from the left menu![A screenshot of a computer
-    AI-generated content may be incorrect.](./media/image55.png)
+    **Authentication** from the left menu
 
-3.  Click on **Add identity provider** to see a list of identity
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image55.png)
+
+3.  Click on **Add identity provider** to see a list of identity
     providers.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image56.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image56.png)
 
-4.  Click on Identity Provider dropdown to see a list of identity
-    providers and select the first option **Microsoft** from the
-    drop-down list 
+4.  Click on Identity Provider dropdown to see a list of identity
+    providers and select the first option **Microsoft** from the
+    drop-down list 
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image57.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image57.png)
 
-5.  Select **client secret expiration** under App registration and click
+5.  Select **client secret expiration** under App registration and click
     on **Add** button
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image58.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image58.png)
 
 6.  You have successfully added app authentication, and now required to
     log in to access the application.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image59.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image59.png)
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image60.png)
 
 6.  On the web app home page, go to **Overview** and click **Browse**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image60.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image61.png)
 
 7.  Wait for the web application deployment to complete.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image61.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image62.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image62.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image63.png)
 
 ## Task 7: Review and Explore the Sample Questions for Your Copilot Application
 
-To help you get started, here are some **Sample Prompts** you can ask
-after selecting the **Karen Berg** client:
+1.  Select the Team option from the top-left section, then click
+    Continue after choosing the desired team.
 
-1.  Click on **Karen Berg** client
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image64.png)
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image63.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image65.png)
 
-2.  On the web app page, enter the following question and click the
-    **Submit** icon as shown in the image.
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image66.png)
 
-> +++ What were Karen's concerns during our last meeting?+++
+## Task 8: Retail Scenario
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image64.png)
+In this Retail scenario, Contoso’s Retail Support Team uses a
+multi-agent AI system to improve customer satisfaction. When a customer
+shows signs of dissatisfaction — such as poor feedback, repeated
+complaints, or low engagement — the system analyzes the situation and
+automatically proposes a recovery plan.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image65.png)
+This process is powered by multiple AI agents working together to
+understand customer history, analyze sentiment, and recommend corrective
+actions.
 
-3.  On the web app page, enter the following question and click the
-    **Submit** icon as shown in the image.
+1.  Select the Retail team, follow the prompts below.
 
-> +++Did Karen express any concerns over market fluctuations in prior
-> meetings?+++
+	**Agents Used:** Customer, Order, Analysis Recommendation
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image66.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image67.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image67.png)
+2.  In the **Multi-Agent Planner**, under *Quick tasks*, select
+    **Satisfaction Plan** to generate an analysis of Emily Thompson’s
+    satisfaction with Contoso along with recommended actions to improve
+    it**
 
-4.  On the web app page, enter the following question and click the
-    **Submit** icon as shown in the image
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image68.png)
 
-> +++What type of asset does Karen own ?+++
+3.  Click the **Submit** icon as shown in the image.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image68.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image69.png)
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image69.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image70.png)
 
-> **+++ Show latest asset value by asset type?+++**
+4.  Task: Click **"Approve Task Plan"** Button
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image70.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image71.png)
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image71.png)
+	**Observe**: It goes into "Thinking Process", "Processing your plan"
+	and "coordinating with AI Agents".*  
+	*Review the output.*
 
-> **+++How did equities asset value change in the last six months?+++**
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image72.png)
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image72.png)
+## Task 9 :Product Marketing Scenario
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image73.png)
+In this scenario, Contoso’s Product Marketing Team uses a multi-agent AI
+system to quickly generate a professional press release for a product
+announcement. Instead of manually coordinating between product managers
+and marketing writers, AI agents collaborate to gather product
+information, shape the messaging, and produce a structured communication
+plan.
 
-This structured approach helps users quickly retrieve client-specific
-insights, track financial trends, and stay informed on client priorities
-for better decision-making and engagement.
+This scenario demonstrates how AI agents streamline marketing content
+creation while ensuring alignment with product details and brand voice.
 
-## Task 8: Delete the Resources
+1.  Select the Marketing team, follow the prompts below.
 
-1.  To delete Resource group , type **Resource groups** in the Azure
-    portal search bar, navigate and click on **Resource
-    groups** under **Services**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image73.png)
 
-> ![A screenshot of a computer Description automatically
-> generated](./media/image74.png)
+	**Agents Used:** Product, Marketing , Proxy
+
+2.  Switch to **"Product Marketing Team"** from the top left section and
+    click **"Continue"** button.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image74.png)
+
+	- Task: From the Quick Tasks, select **"Draft a press release"** and
+	  submit it.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image75.png)
+
+3.  Click the **Submit** icon as shown in the image.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image76.png)
+
+	>[!Note]: Average response time is 15–20 seconds. It will trigger the "Generating Plan Action" and give the
+	Proposed Plan with 4 or more Steps*
+
+	- Task: Click on **"Approve Task Plan"** Button
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image77.png)
+
+	>[!Note]: Average response time is around 01 minute. It goes into "Thinking Process" and observe a spinner "Processing your plan and coordinating with AI Agents".  
+	Review the output.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image78.png)
+
+## Task 10: HR Onboarding Scenario
+
+In this scenario, Contoso’s Human Resources Team uses a multi-agent AI
+system to streamline the onboarding of a new employee. Instead of
+manually coordinating with IT, facilities, and payroll teams, AI agents
+collaborate to collect required details, plan onboarding tasks, and
+prepare everything needed for the employee’s first day.
+
+This demonstrates how AI agents can orchestrate cross-functional
+onboarding activities efficiently and accurately
+
+1.  Select the HR team, follow the prompts below.
+
+	**Agents Used:** HR Helper, Technical support , Proxy
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image79.png)
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image80.png)
+
+2.  The HR Onboarding Scenario allows users to explore and retrieve
+    information related to OnBoarding the Employee. Key tasks include:
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image81.png)
+
+	Sample operation:
+
+1.  Task: Switch to the **"Human Resources Team"** from the top left
+    section and click **"Continue"**
+
+2.  Task: From the Quick Tasks, select **"Onboard New Employee"** and
+    submit it.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image81.png)
+
+3.  Click the **Submit** icon as shown in the image.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image82.png)
+
+	>[!Note]: Average response time is 15–20 seconds.
+
+	**Observe:** If it asks for additional clarification (Human in the loop)
+	Please provide this information irrespective of what specific
+	information is asked. This will prevent agent for asking for multiple
+	clarifications
+
+	**department**: hr, role: manager, start date: 11/23/2025, orientation
+	date: 11/25/2025, location: onsite, email: js@contoso.com, mentor: Jim
+	Shorts, benefits package: standard, ID Card: yes, salary: 70000, Laptop
+	: Dell 14 Plus
+
+	**Observe**: It will trigger "Generating Plan Action" and "Proposed Plan"
+	with 4 or more Steps
+
+	**Task**: Click on **"Approve Task Plan"** Button.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image83.png)
+
+	>[!Note]: Average response time is around 01 minute 15 seconds.  
+	Observe: It goes into "Thinking Process", "Processing your plan" and
+	"coordinating with AI Agents"  
+	Review the output.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image84.png)
+
+## Task 11: RFP Analysis Scenario
+
+In this scenario, Contoso’s RFP Team uses a multi-agent AI system to
+analyze Request for Proposal (RFP) and contract documents. Reviewing
+RFPs manually can take days and involves multiple stakeholders such as
+legal, compliance, and business teams. With AI agents working together,
+the system summarizes the document, identifies risks, and checks
+compliance requirements — helping teams respond faster and more
+accurately
+
+1.  Select the RFP team, follow the prompts below.
+
+	**Agents Used:** RFP Summary, RFP Risk, RFP Compliance
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image85.png)
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image86.png)
+
+	The RFP Analysis Scenario allows users to explore and analyze Request
+	for Proposal (RFP) and contract documents. Key tasks include:
+
+	*Sample operation:*
+
+	- **Task**: Switch to the **"RFP Team"** from the top left section and
+	  click **"Continue"** button.
+
+	- **Task**: From the Quick Tasks, select **"RFP Document Summary"** and
+	  submit it.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image87.png)
+
+1.  Click the **Submit** icon as shown in the image.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image88.png)
+
+	>[!Note]: Average response time is 10–15 minutes. It will trigger the "Generating Plan Action" and give the Proposed Plan with 5 or more Steps
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image89.png)
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image90.png)
+
+**Task 12: Contract Compliance Review Scenario**
+
+In this scenario, Contoso’s Contract Compliance Review Team uses a
+multi-agent AI system to analyze Non-Disclosure Agreements (NDAs) and
+other contract documents. Legal and compliance teams often spend
+significant time reviewing contracts for risks, missing clauses, and
+policy alignment. With AI agents collaborating, the system can quickly
+summarize contracts, identify risks, and verify compliance with internal
+standards.
+
+This scenario highlights how AI supports faster, more consistent
+contract reviews while keeping humans in control of final decisions.
+
+1.  Select the Contract Compliance team, follow the prompts below.
+
+	**Agents Used:** Contract Summary, Contract Risk, Contract Compliance
+
+	The Contract Compliance Review Scenario allows users to explore and
+	analyze NDA and contract documents for compliance and risk assessment.
+	Key tasks include:
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image91.png)
+
+	Sample operation:
+
+	- **Task**: Switch to the **"Contract Compliance Review Team"** from the
+	  top left section and click **"Continue"** button.
+
+	![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image92.png)
+
+	- **Task**: From the Quick Tasks, select **"NDA Contract Review"** and
+	  submit it.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image93.png)
+
+2.  Click the **Submit** icon as shown in the image.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image94.png)
+
+	>[!Note]: Average response time is 10–15 minutes. It will trigger the "Generating Plan Action" and give the
+	Proposed Plan with 4 or more Steps
+
+	- Task: Click on **"Approve Task Plan"** Button.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image95.png)
+
+	>[!Note]: Average response time is around 01 minute. It goes into "Thinking Process", "Processing your plan" and "coordinating with AI Agents".  
+	**Review the output.**
+	>
+	>This structured approach ensures that users receive automated,
+	AI-coordinated task execution and intelligent responses from specialized
+	agents.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image96.png)
+
+## Task 12: Delete the Resources
+
+1.  To delete Resource group , type **Resource groups** in the Azure
+    portal search bar, navigate and click on **Resource
+    groups** under **Services**.
+
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image97.png)
 
 2.  In the Resource groups page, select your resource group.
 
-3.  In the **Resource group** home page, select all resources and click
-    on **delete**
+3.  In the **Resource group** home page, select all resources and click
+    on **delete**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image75.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image98.png)
 
-4.  In the **Delete Resources** pane that appears on the right side,
-    navigate to **Enter “delete” to confirm deletion** field, then click
-    on the **Delete** button
+4.  In the **Delete Resources** pane that appears on the right side,
+    navigate to **Enter “delete” to confirm deletion** field, then click
+    on the **Delete** button
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image76.png)
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image99.png)
 
-5.  On **Delete confirmation** dialog box, click on **Delete** button.
+5.  On **Delete confirmation** dialog box, click on **Delete** button.
 
-> ![A screenshot of a computer error AI-generated content may be
-> incorrect.](./media/image77.png)
+    ![A screenshot of a computer error AI-generated content may be
+incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image100.png)
 
 **Summary**
 
-This usecase explains how to deploy and use a custom AI copilot built
-with Azure OpenAI and Azure AI Search to support customer-facing roles,
-such as financial client advisors. The copilot streamlines daily work by
-summarizing past client meetings, providing financial insights, and
-enabling conversational data queries, ultimately improving customer
-satisfaction, retention, and productivity. The document walks learners
-through provisioning Azure resources using Azure Developer CLI (azd up),
-processing and uploading sample data, verifying deployed services such
-as App Service, Cosmos DB, SQL Database, Azure Storage, and Foundry
-projects, and configuring authentication for secure access. Users then
-explore the deployed web application and test sample prompts to retrieve
-client insights, such as past concerns, asset details, and financial
-trends. The lab concludes with cleanup steps for deleting the resource
-group. Overall, the guide provides an end-to-end hands-on experience for
-building and deploying a working copilot application in Azure.
+In this use case, Contoso leverages a Multi-Agent Accelerator solution
+deployed on Azure to orchestrate employee onboarding. When HR initiates
+a new hire request, AI agents collaborate to analyze requirements,
+create a task plan, and coordinate actions across enterprise systems.
 
+Specialized agents handle responsibilities such as account provisioning,
+hardware allocation, access control, payroll setup, and compliance
+verification. A planner agent breaks the goal into structured steps,
+executor agents perform actions, and validation agents ensure
+completeness and policy alignment — all while keeping humans in the loop
+for approvals.
 
+This implementation highlights how multi-agent AI orchestration
+transforms a traditionally manual, error-prone HR process into an
+intelligent, automated, and scalable workflow. The result is faster
+onboarding, improved operational efficiency, and a better experience for
+both employees and internal teams.
