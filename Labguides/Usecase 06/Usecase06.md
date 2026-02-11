@@ -1,6 +1,6 @@
 # **Usecase 06 - Autonomous Multi-Agent Employee Onboarding Orchestration**
 
-**Introduction**
+![image](./media/image1.png)
 
 Contoso, a growing global technology company, hires dozens of employees
 every month across multiple regions. Their onboarding process involves
@@ -259,6 +259,10 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdep
     ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image43.png)
 
     ![](https://raw.githubusercontent.com/technofocus-pte/AzAifndry-Agntsdepth/refs/heads/Cloudslice/Labguides/Usecase%2006/media/image44.png)
+
+![](./media/image43.png)
+
+![](./media/image44.png)
 
 ## Task 5: Verify deployed resources in the Azure portal
 
