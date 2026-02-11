@@ -1,2 +1,2 @@
 # AzAifndry-Agntsdepth
-Azure AI Foundry + Agents
+Build AI apps and agents with Azure
