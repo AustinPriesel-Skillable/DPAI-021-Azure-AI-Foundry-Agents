@@ -12,7 +12,7 @@ company.
 
 #### **Scenario**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
 A Woodgrove Bank Client Advisor is preparing for upcoming client
@@ -28,7 +28,7 @@ navigation between viewing client profiles and chatting with data.
 Altogether, these features streamline meeting preparation for client
 advisors and result in more productive conversations with clients.
 
-    ![A diagram of a company AI-generated content may be
+![A diagram of a company AI-generated content may be
 incorrect.](./media/image2.png)
 
 **Solution overview**
@@ -111,7 +111,7 @@ efficiency, customer satisfaction, and overall business impact
 - **GitHub Account**: You are expected to have your own GitHub login
   credentials.  
   If you do not have an account, please create one by visiting:  
-  +++<https://github.com/signup?user_email=&source=form-home-signup+++>
+  +++https://github.com/signup?user_email=&source=form-home-signup+++
 
 ## Task 0: Understand the VM and the credentials
 
