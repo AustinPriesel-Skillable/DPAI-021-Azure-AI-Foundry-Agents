@@ -12,8 +12,7 @@ company.
 
 #### **Scenario**
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image1.png)
+![A screenshot of a computer AI-generated content may be incorrect.](./media/image1.png)
 
 A Woodgrove Bank Client Advisor is preparing for upcoming client
 meetings. He wants insight into his scheduled client meetings, access to
@@ -28,8 +27,7 @@ navigation between viewing client profiles and chatting with data.
 Altogether, these features streamline meeting preparation for client
 advisors and result in more productive conversations with clients.
 
-![A diagram of a company AI-generated content may be
-incorrect.](./media/image2.png)
+![A diagram of a company AI-generated content may be incorrect.](./media/image2.png)
 
 **Solution overview**
 
